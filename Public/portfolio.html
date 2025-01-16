@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Moonstruck335</title>
+    <!-- Link ke Font Awesome CDN untuk ikon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #007bff, #00bcd4);
+            color: white;
+            padding: 30px 10%;
+            text-align: center;
+            border-bottom: 5px solid #0056b3;
+        }
+
+        header h1 {
+            margin: 10px 0;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 3px solid white;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        main {
+            padding: 40px 10%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .project {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            color: #007bff;
+        }
+
+        .project a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .project a:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 10%;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+            border-top: 5px solid #007bff;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+        /* Styling untuk About Me */
+    #about {
+        background: #f0f8ff;
+        padding: 40px 10%;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container {
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        color: #007bff;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    #about p {
+        font-size: 1.2rem;
+        color: #555;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Styling untuk Skills */
+    #skills {
+        padding: 40px 10%;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .skills-container {
+        text-align: center;
+    }
+
+    #skills ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #skills li {
+        font-size: 1.2rem;
+        margin: 15px 0;
+        color: #555;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease;
+    }
+
+    #skills li i {
+        margin-right: 10px;
+        font-size: 1.5rem;
+        color: #007bff;
+    }
+
+    #skills li:hover {
+        transform: translateX(5px);
+        color: #007bff;
+    }
+
+     /* Styling untuk Contact Section */
+    #contact {
+        background: #007bff;
+        padding: 50px 10%;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+    }
+
+    .contact-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    #contact p {
+        font-size: 1.2rem;
+        color: #f0f8ff;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .contact-btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #ffffff;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 30px;
+        border: 2px solid #ffffff;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact-btn i {
+        margin-right: 10px;
+    }
+
+    .contact-btn:hover {
+        background-color: #0056b3;
+        color: white;
+        transform: translateY(-5px);
+    }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .project h2 {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 20px 5%;
+            }
+        }
+        #about, #skills {
+            padding: 30px 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        #skills li {
+            font-size: 1rem;
+        }
+        #contact {
+            padding: 40px 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .contact-btn {
+            font-size: 1rem;
+            padding: 12px 25px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.pinimg.com/474x/b3/f9/5e/b3f95e89c1440a5f7652b5662e1c2002.jpg" alt="Profile Picture">
+        <h1>Moonstruck335</h1>
+        <p>Developer Front-End | "Creating JavaScript-based solutions for interactive UI/UX"</p>
+        <nav>
+            <a href="#about">About</a> |
+            <a href="#skills">Skills</a> |
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="about-container">
+                <h2 class="section-title">About Me</h2>
+                <p>I'm a passionate front-end developer who specializes in creating interactive user interfaces using JavaScript. I enjoy solving problems and creating solutions that make life easier.</p>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <div class="skills-container">
+                <h2 class="section-title">Skills</h2>
+                <ul>
+                    <li><i class="fas fa-code"></i> HTML, CSS, JavaScript</li>
+                    <li><i class="fab fa-react"></i> React.js</li>
+                    <li><i class="fas fa-paint-brush"></i> UI/UX Design</li>
+                    <li><i class="fab fa-git"></i> Version Control (Git)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="project">
+            <h2>To Do List</h2>
+            <p>An interactive To-Do List application to easily manage and track your daily tasks.</p>
+            <a href="https://fadhilahmadfathoni.github.io/FadhilFat/Todolist/todolist.html" target="_blank">View on GitHub</a>
+        </section>
+
+        <section class="project">
+            <h2>Cleanify</h2>
+            <p>A home cleaning service website we created as a college assignment.</p>
+            <a href="https://github.com/FadhilAhmadFathoni/cleanify" target="_blank">View on GitHub</a>
+        </section>
+
+        <section class="project">
+            <h2>English-Indonesian Word Matching Game</h2>
+            <p>An educational game to learn English-Indonesian.</p>
+            <a href="https://fadhilahmadfathoni.github.io/FadhilFat/Cocok/cocok.html" target="_blank">View on GitHub</a>
+        </section>
+        <section id="contact">
+            <div class="contact-container">
+                <h2 class="section-title">Contact</h2>
+                <p>If you would like to collaborate, feel free to reach out!</p>
+                <a href="mailto:moonstruck335@gmail.com" class="contact-btn">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Moonstruck335 | All rights reserved.</p>
+        <p>Follow me on <a href="https://github.com/FadhilAhmadFathoni" target="_blank">GitHub</a></p>
+    </footer>
+</body>
+</html>
