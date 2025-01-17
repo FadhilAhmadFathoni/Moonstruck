@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate Single Tunggal</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Set default font */
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Main wrapper for content */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            font-size: 2em;
+        }
+
+        /* Form and input */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0056b3;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            background-color: #004085;
+        }
+
+        /* Styling for snackbar */
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        /* Styling grafik */
+        canvas {
+            width: 100%;
+            height: 300px;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        /* Styling History */
+        #riwayat {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        #riwayat ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #riwayat li {
+            margin-bottom: 10px;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            input[type="text"],
+            button {
+                width: 100%;
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            canvas {
+                height: 250px;
+            }
+        }
+        /* Hover effect on container */
+    .container:hover {
+        transform: scale(1.01);
+        transition: transform 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hover effect on heading (h1) */
+    h1:hover {
+        color: #0056b3;
+        cursor: pointer;
+    }
+
+    /* Hover effect on paragraph */
+    p:hover {
+        color: #555;
+    }
+
+    /* Hover effect on input */
+    input[type="text"]:hover {
+        border-color: #003a80;
+        background-color: #f0f8ff;
+    }
+
+    /* Hover effect on button */
+    button:hover {
+        background-color: #0056b3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hover effect on snackbar element */
+    #snackbar:hover {
+        background-color: #444;
+    }
+
+    /* Hover effect on graph */
+    canvas:hover {
+        border: 2px solid #007bff;
+        border-radius: 10px;
+    }
+
+    /* Hover effect on history */
+    #riwayat:hover {
+        border-color: #007bff;
+        background-color: #eef6ff;
+    }
+
+    /* Hover effect on items in history */
+    #riwayat li:hover {
+        color: #007bff;
+        font-weight: bold;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Compute Single Data</h1>
+        <p>Enter the numbers separated by commas (,):</p>
+        <input type="text" id="angka" placeholder="Example: 10, 20, 30, 40, 50" />
+        <button onclick="hitungStatistik()">Calculate Statistics</button>
+        <button onclick="resetInput()">Reset</button>
+        <p id="hasil"></p>
+
+        <canvas id="grafik"></canvas>
+
+        <!-- Snackbar for notifications -->
+        <div id="snackbar">Input successful!</div>
+    </div>
+    <div id="riwayat">
+        <h2>Calculation History</h2>
+        <ul id="riwayat-list"></ul>
+        <button onclick="hapusRiwayat()">Delete History</button>
+    </div>
+    <script>
+        let chartInstance; // Save graphic references
+        let history = []; // Array to store calculation history
+
+        function hitungStatistik() {
+    const input = document.getElementById("angka").value.trim();
+
+    // Validate if input is empty
+    if (input === "") {
+        document.getElementById("hasil").innerHTML = "Input cannot be empty!";
+        return;
+    }
+
+    // Ensure input only contains numbers and commas
+    const regex = /^[\d,]+$/;
+    if (!regex.test(input)) {
+        document.getElementById("hasil").innerHTML = "Input can only contain numbers and commas!";
+        return;
+    }
+
+    // Make sure there is a comma as a separator between numbers
+    if (!input.includes(",")) {
+        document.getElementById("hasil").innerHTML = "Make sure the numbers are separated by commas!";
+        return;
+    }
+
+    // Splits input into an array of numbers
+    const angkaArray = input.split(",").map(num => num.trim()).map(Number);
+
+    // Validate to ensure that no numbers are NaN
+    if (angkaArray.some(isNaN)) {
+        document.getElementById("hasil").innerHTML = "Enter valid numbers, separated by commas!";
+        return;
+    }
+
+    // Validate to ensure number is greater than 0
+    if (angkaArray.some(num => num <= 0)) {
+        document.getElementById("hasil").innerHTML = "The number must be greater than 0!";
+        return;
+    }
+
+    // Warning if input contains more than 100 numbers
+    if (angkaArray.length > 100) {
+        document.getElementById("hasil").innerHTML = "Input too long! Maximum 100 numbers.";
+        return;
+    }
+
+    // Compute Statistics
+    const totalAngka = angkaArray.length;
+    const jumlah = angkaArray.reduce((sum, num) => sum + num, 0);
+
+    // Compute Mean
+    const rataRata = jumlah / totalAngka;
+
+    // Compute Median
+    const sortedArray = angkaArray.slice().sort((a, b) => a - b);
+    const median = totalAngka % 2 === 0
+        ? (sortedArray[totalAngka / 2 - 1] + sortedArray[totalAngka / 2]) / 2
+        : sortedArray[Math.floor(totalAngka / 2)];
+
+    // Compute Modus
+    const frekuensi = angkaArray.reduce((freq, num) => {
+        freq[num] = (freq[num] || 0) + 1;
+        return freq;
+    }, {});
+    const maxFrekuensi = Math.max(...Object.values(frekuensi));
+    const modus = Object.keys(frekuensi).filter(key => frekuensi[key] === maxFrekuensi);
+
+    // Compute Range
+    const range = Math.max(...angkaArray) - Math.min(...angkaArray);
+
+    const hasil = `
+    <p><strong>Numbers (Sort):<br>
+        </strong> ${sortedArray.join(", ")}</p>
+    <br>
+    <p><strong>Mean:</strong> ${rataRata.toFixed(2)}</p>
+    <p><strong>Median:</strong> ${median}</p>
+    <p><strong>Modus:</strong> ${modus.length === angkaArray.length ? "None (all numbers are unique)" : modus.join(", ")}</p>
+    <p><strong>Range:</strong> ${range}</p>
+`;
+document.getElementById("hasil").innerHTML = hasil;
+
+// Save results to history
+simpanRiwayat(hasil);
+
+    // Save calculation results to history and display graph
+    tampilkanGrafik(angkaArray);
+    showSnackbar("Input successful!");
+}
+function simpanRiwayat(hasil) {
+        // Retrieve history from local storage
+        let riwayat = JSON.parse(localStorage.getItem("riwayat")) || [];
+
+        // Add new results to history
+        riwayat.push(hasil);
+
+        // Save back to local storage
+        localStorage.setItem("riwayat", JSON.stringify(riwayat));
+
+        // Update history view
+        tampilkanRiwayat();
+    }
+
+    function tampilkanRiwayat() {
+        const riwayat = JSON.parse(localStorage.getItem("riwayat")) || [];
+        const riwayatList = document.getElementById("riwayat-list");
+        riwayatList.innerHTML = ""; // Delete previous contents
+
+        // Tampilkan setiap riwayat
+        riwayat.forEach((item, index) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+                <strong>History ${index + 1}:</strong><br>
+                ${item}
+            `;
+            riwayatList.appendChild(listItem);
+        });
+    }
+
+    function hapusRiwayat() {
+        // Delete from local storage
+        localStorage.removeItem("riwayat");
+
+        // Update history view
+        tampilkanRiwayat();
+        showSnackbar("History deleted!");
+    }
+function showSnackbar(message) {
+    let snackbar = document.getElementById("snackbar");
+    snackbar.innerText = message;
+    snackbar.className = "show";
+    setTimeout(function () {
+        snackbar.className = snackbar.className.replace("show", "");
+    }, 3000);
+}
+
+
+        function tampilkanGrafik(data) {
+            // Calculates the frequency of each number
+            let frekuensi = {};
+            data.forEach(function (num) {
+                frekuensi[num] = (frekuensi[num] || 0) + 1;
+            });
+
+            // Get unique numbers and their frequencies
+            let angkaUnik = Object.keys(frekuensi);
+            let frekuensiAngka = Object.values(frekuensi);
+
+            const ctx = document.getElementById("grafik").getContext("2d");
+
+            // If there is an existing graph, destroy the previous graph
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Create a new chart
+            chartInstance = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: angkaUnik, // Unique numbers on the X axis
+                    datasets: [
+                        {
+                            label: "Frekuensi",
+                            data: frekuensiAngka, // Number of occurrences on the Y axis
+                            backgroundColor: "rgba(75, 192, 192, 0.5)",
+                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return tooltipItem.label + ": " + tooltipItem.raw + " kali"; // Displays the frequency on hover
+                                },
+                            },
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+        }
+
+        function resetInput() {
+            document.getElementById("angka").value = "";
+            document.getElementById("hasil").innerText = "";
+            let ctx = document.getElementById("grafik").getContext("2d");
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Delete graphics
+            // Removed snackbar
+            showSnackbar("Input reset!");
+        }
+
+    
+    // Load history when page loads
+    document.addEventListener("DOMContentLoaded", tampilkanRiwayat);
+    </script>
+</body>
+
+</html>
