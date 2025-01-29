@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blender Daging Premium</title>
     <style>
+        @keyframes move {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -69,12 +74,15 @@
             margin-bottom: 20px;
         }
         .price del {
-            color: #888;
+            color: #e74c3c;
+            font-size: 30px;
         }
         .price span {
             color: #e74c3c;
-            font-size: 24px;
+            font-size: 35px;
             font-weight: bold;
+            display: inline-block;
+            animation: move 1s infinite ease-in-out;
         }
         .specifications {
             margin-top: 20px;
@@ -88,6 +96,28 @@
             padding-left: 20px;
         }
         .specifications ul li {
+            margin-bottom: 10px;
+        }
+        .description {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .why-choose {
+            margin-top: 20px;
+            background: #f3f3f3;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .why-choose h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .why-choose ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .why-choose ul li {
             margin-bottom: 10px;
         }
         .cta {
@@ -107,11 +137,86 @@
         .cta button:hover {
             background-color: #c0392b;
         }
+        .testimonials {
+            margin-top: 20px;
+            background: #f3f3f3;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .testimonials h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .testimonial {
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .testimonial img.profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .testimonial-content {
+            flex: 1;
+        }
+        .testimonial p {
+            margin: 5px 0;
+        }
+        .stars {
+            color: #FFD700;
+        }
+        .testimonial img.review-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+        .promo{
+            background-color: yellow;
+            display: inline-block
+        }
+        .promo h3 {
+            color: red;
+            margin: 5px;
+        }
+        .payment-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+        .payment-info img {
+            display: block;
+            margin: 10px auto;
+            width: 350px;
+            height: auto;
+        }
+        .trust-badges {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .trust-badges img {
+            width: 80px;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 class="product-title">Blender Daging Premium</h1>
+        <div class="trust-badges">
+            <img src="https://i.pinimg.com/736x/75/01/fb/7501fbdb05b9d2a70a7f844826d1e5cb.jpg" alt="100% Aman dan Terpercaya">
+            <img src="https://i.pinimg.com/236x/3a/22/51/3a2251305d9064e0fbbc3a57cdb499fb.jpg" alt="Banyak Terjual">
+            <img src="https://i.pinimg.com/236x/7e/da/c7/7edac72885d7ff61ace53659b6cb1ee0.jpg" alt="Produk Original">
+        </div>
         <div class="slider">
             <div class="slides">
                 <div class="slide"><img src="https://i.pinimg.com/736x/e9/7f/dd/e97fdd65a2e2ab48f9bed1ca5c26e6a3.jpg" alt="Blender Image 1"></div>
@@ -129,7 +234,30 @@
             </div>
         </div>
         <div class="price">
-            <del>Rp.336.000</del> <span>Rp.168.000</span>
+            <h3>Harga Normal</h3>
+            <del>Rp.336.000</del><br>
+            <div class="promo"><h3>Promo Cuci Gudang 50%</h3></div>
+            <span>Rp.168.000</span><br>
+        </div>
+        <div class="payment-info">
+            ✅ COD (Bayar di Tempat) <br>
+            🚚 Gratis Ongkir ke Seluruh Indonesia
+            <img src="https://i.pinimg.com/236x/0b/ce/a9/0bcea99fefdf351a21452717b9a8aa6c.jpg" alt="COD">
+        </div>
+        <div class="description">
+            <p>Blender Daging Premium adalah solusi terbaik untuk Anda yang ingin mengolah daging dengan mudah dan cepat. Dengan pisau tajam berbahan stainless steel food-grade, blender ini mampu menghancurkan daging hingga tekstur yang halus dalam waktu singkat.</p>
+            <p>Dirancang dengan kapasitas besar 2L, sangat cocok untuk kebutuhan rumah tangga maupun usaha kuliner. Selain itu, fitur keamanan otomatis akan menghentikan mesin jika suhu terlalu panas, sehingga lebih aman digunakan.</p>
+        </div>
+        
+        <div class="why-choose">
+            <h2>Mengapa Memilih Blender Ini?</h2>
+            <ul>
+                <li><strong>Efisiensi Tinggi:</strong> Motor bertenaga 250W memastikan daging terolah dengan cepat.</li>
+                <li><strong>Keamanan Optimal:</strong> Sistem pemutus otomatis mencegah overheating.</li>
+                <li><strong>Material Berkualitas:</strong> Pisau stainless steel tahan lama dan aman untuk makanan.</li>
+                <li><strong>Kapasitas Besar:</strong> Dengan kapasitas 2L, ideal untuk keluarga maupun bisnis.</li>
+                <li><strong>Mudah Dibersihkan:</strong> Desain pisau yang dapat dilepas memudahkan pencucian.</li>
+            </ul>
         </div>
         <div class="specifications">
             <h2>Spesifikasi Produk:</h2>
@@ -145,6 +273,54 @@
                 <li>Aman digunakan, mesin panas akan berhenti otomatis</li>
                 <li>Meat grinder menggunakan mata pisau yang tajam memudahkan kita mengelolah bahan masakan atau daging lebih halus</li>
             </ul>
+        </div>
+        <div class="testimonials">
+            <h2>Testimoni Pelanggan</h2>
+            <div class="testimonial">
+                <img class="profile" src="https://i.pinimg.com/236x/6b/d7/28/6bd728ce9ea04977fc0c75ae4cf6c58e.jpg" alt="Rina S">
+                <div class="testimonial-content">
+                    <p><strong>Rina S.</strong></p>
+                    <p class="stars">⭐⭐⭐⭐⭐</p>
+                    <p>"Blender ini sangat membantu! Daging jadi halus dalam hitungan detik. Wajib punya!"</p>
+                    <img class="review-img" src="https://via.placeholder.com/100" alt="Review Rina S">
+                </div>
+            </div>
+            <div class="testimonial">
+                <img class="profile" src="https://i.pinimg.com/236x/d5/f2/0e/d5f20ebf66f702bf5538e0967a42f7fb.jpg" alt="Vina">
+                <div class="testimonial-content">
+                    <p><strong>Vina</strong></p>
+                    <p class="stars">⭐⭐⭐⭐⭐</p>
+                    <p>"Kualitas premium dengan harga yang sangat terjangkau. Pengiriman juga cepat!"</p>
+                    <img class="review-img" src="https://via.placeholder.com/100" alt="Review Vina">
+                </div>
+            </div>
+            <div class="testimonial">
+                <img class="profile" src="https://i.pinimg.com/236x/aa/a6/fc/aaa6fca9fca7613acc937edb6bde037b.jpg" alt="Lina M">
+                <div class="testimonial-content">
+                    <p><strong>Lina M.</strong></p>
+                    <p class="stars">⭐⭐⭐⭐</p>
+                    <p>"Blendernya bagus, tapi pengiriman agak lama. Overall puas!"</p>
+                    <img class="review-img" src="https://via.placeholder.com/100" alt="Review Lina M">
+                </div>
+            </div>
+            <div class="testimonial">
+                <img class="profile" src="https://i.pinimg.com/474x/4b/42/b9/4b42b981c3c9d1926b0385d62d2fe4d5.jpg" alt="Amira">
+                <div class="testimonial-content">
+                    <p><strong>Amira</strong></p>
+                    <p class="stars">⭐⭐⭐⭐</p>
+                    <p>"Blendernya bagus, tapi pengiriman agak lama. Overall puas!"</p>
+                    <img class="review-img" src="https://via.placeholder.com/100" alt="Review Amira">
+                </div>
+            </div>
+            <div class="testimonial">
+                <img class="profile" src="https://i.pinimg.com/236x/8a/f4/1e/8af41e68811ab82fb6639491b4de51f2.jpg" alt="Dewi">
+                <div class="testimonial-content">
+                    <p><strong>Dewi</strong></p>
+                    <p class="stars">⭐⭐⭐⭐</p>
+                    <p>"Blendernya bagus, tapi pengiriman agak lama. Overall puas!"</p>
+                    <img class="review-img" src="https://via.placeholder.com/100" alt="Review Dewi">
+                </div>
+            </div>
         </div>
         <div class="cta">
             <button>Beli Sekarang</button>
