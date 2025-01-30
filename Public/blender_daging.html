@@ -207,6 +207,29 @@
             width: 80px;
             margin: 5px;
         }
+        .countdown {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+            margin-top: 10px;
+        }
+        .progress-container {
+            width: 80%;
+            background-color: #ddd;
+            margin: 10px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: red;
+            width: 0%;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            line-height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -238,6 +261,13 @@
             <del>Rp.336.000</del><br>
             <div class="promo"><h3>Promo Cuci Gudang 50%</h3></div>
             <span>Rp.168.000</span><br>
+        </div>
+        <div class="countdown">
+            <h3>Promo Berakhir Dalam:</h3>
+            <p id="timer"></p>
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
         </div>
         <div class="payment-info">
             ✅ COD (Bayar di Tempat) <br>
@@ -344,6 +374,38 @@
 
         prevButton.addEventListener('click', () => showSlide(-1));
         nextButton.addEventListener('click', () => showSlide(1));
+
+        function countdownTimer() {
+            const endDate = new Date('March 1, 2025 23:59:59');
+            const startDate = new Date('January 1, 2025 00:00:00');
+            const totalDuration = endDate - startDate;
+
+            function updateTimer() {
+                const now = new Date();
+                const timeDiff = endDate - now;
+                if (timeDiff <= 0) {
+                    document.getElementById('timer').innerHTML = "Promo Telah Berakhir!";
+                    document.getElementById('progress-bar').style.width = "100%";
+                    document.getElementById('progress-bar').innerText = "100%";
+                    return;
+                }
+
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                document.getElementById('timer').innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+                
+                const elapsedTime = now - startDate;
+                const progress = Math.min((elapsedTime / totalDuration) * 100, 100);
+                document.getElementById('progress-bar').style.width = progress + "%";
+                
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+        countdownTimer();
     </script>
 </body>
 </html>
